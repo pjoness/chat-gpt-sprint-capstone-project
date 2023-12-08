@@ -1,2 +1,2 @@
-# chat-gpt-sprint-capstone-project
+# chatgpt-sprint-capstone-project
 Wizeline Academy ChatGPT Sprint Capstone Project
