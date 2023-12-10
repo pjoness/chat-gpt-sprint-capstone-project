@@ -25,8 +25,10 @@ def initialize_vectorstore(index_name, openai_api_key):
         openai_api_key=openai_api_key
         )
     
+    PINECONE_API_KEY = "045c08fa-f083-4f64-9ed2-377725140fb5"
+    
     pinecone.init(
-        api_key="045c08fa-f083-4f64-9ed2-377725140fb5",
+        api_key=PINECONE_API_KEY,
         environment="gcp-starter")
     
     index = pinecone.Index(index_name)
@@ -70,7 +72,7 @@ def generate_response(query, vectorstore, openai_api_key):
 
 if __name__ == "__main__":
 
-    st.title('My App')
+    st.title('Chatbot App')
 
     openai_api_key = st.sidebar.text_input('OpenAI API Key', type='password')
 
@@ -87,5 +89,3 @@ if __name__ == "__main__":
             openai_api_key=openai_api_key)
 
             generate_response(text, vectorstore, openai_api_key=openai_api_key)
-
-    
