@@ -6,7 +6,7 @@ from langchain.llms import OpenAI
 from langchain.chains import RetrievalQA
 import streamlit as st
 
-def initialize_vectorstore(index_name, openai_api_key):
+def initialize_vectorstore(index_name, openai_api_key, pinecone_api_key):
     """
     Initialize a vector store using OpenAI's text-embedding-ada-002 model and Pinecone for similarity search.
 
@@ -25,7 +25,7 @@ def initialize_vectorstore(index_name, openai_api_key):
         openai_api_key=openai_api_key
         )
     
-    PINECONE_API_KEY = "045c08fa-f083-4f64-9ed2-377725140fb5"
+    PINECONE_API_KEY = pinecone_api_key
     
     pinecone.init(
         api_key=PINECONE_API_KEY,
@@ -76,6 +76,8 @@ if __name__ == "__main__":
 
     openai_api_key = st.sidebar.text_input('OpenAI API Key', type='password')
 
+    pinecone_api_key = st.sidebar.text_input('OpenAI API Key', type='password')
+
     INDEX_NAME = "langchain-retrieval-augmentation"
 
     with st.form('my_form'):
@@ -86,6 +88,7 @@ if __name__ == "__main__":
         if submitted and openai_api_key.startswith('sk-'):
             vectorstore = initialize_vectorstore(
             index_name=INDEX_NAME,
-            openai_api_key=openai_api_key)
+            openai_api_key=openai_api_key,
+            pinecone_api_key=pinecone_api_key)
 
             generate_response(text, vectorstore, openai_api_key=openai_api_key)
