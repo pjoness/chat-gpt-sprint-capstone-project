@@ -74,9 +74,9 @@ if __name__ == "__main__":
 
     st.title('Chatbot App')
 
-    openai_api_key = st.sidebar.text_input('OpenAI API Key', type='password')
-
-    pinecone_api_key = st.sidebar.text_input('OpenAI API Key', type='password')
+    with st.sidebar:
+        openai_api_key = st.sidebar.text_input('OpenAI API Key', type='password')
+        pinecone_api_key = st.sidebar.text_input('Pinecone API Key', type='password')
 
     INDEX_NAME = "langchain-retrieval-augmentation"
 
